@@ -1,0 +1,11 @@
+res://Enemies/Walls.tscn
+res://Enemies/EnemyColi.gd
+res://Enemies/Spawner.gd
+res://Enemies/Walls.gd
+res://Levels/first_level.tscn
+res://Enemies/Spawner.tscn
+res://Enemies/Enemy.tscn
+res://Player/player.tscn
+res://Levels/MainMenu.tscn
+res://Levels/Button.gd
+res://Levels/button.gd

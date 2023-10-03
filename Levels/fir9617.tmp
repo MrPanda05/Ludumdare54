@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba7t4avxu6o7u"]
+
+[ext_resource type="PackedScene" uid="uid://bcmejmhblqi2t" path="res://Player/player.tscn" id="1_1ahpr"]
+[ext_resource type="PackedScene" uid="uid://g2qa2ek5yup" path="res://Enemies/Enemy.tscn" id="2_goilj"]
+[ext_resource type="PackedScene" uid="uid://bvgfxpgo0hce5" path="res://Enemies/Walls.tscn" id="3_usdr4"]
+
+[node name="First Level" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("1_1ahpr")]
+
+[node name="Enemy" parent="." instance=ExtResource("2_goilj")]
+scale = Vector2(0.306151, 0.31)
+
+[node name="Node2D" parent="." instance=ExtResource("3_usdr4")]
+
+[node name="timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="timer" to="Node2D" method="_on_timer_timeout"]

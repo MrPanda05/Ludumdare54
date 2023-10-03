@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfybdbga8ff5"]
+
+[ext_resource type="Texture2D" uid="uid://crajxv0663pv0" path="res://Assets/grass.png" id="1_nf0ib"]
+[ext_resource type="Script" path="res://Levels/button.gd" id="1_sc1a7"]
+[ext_resource type="Texture2D" uid="uid://jwai46n1roou" path="res://Assets/fire.png" id="2_vuv86"]
+[ext_resource type="Texture2D" uid="uid://2yqnwqqg3kiw" path="res://Assets/Ghost.png" id="3_aoh5o"]
+
+[node name="Node" type="Node"]
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("1_sc1a7")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.290196, 0.196078, 0.501961, 1)
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 134.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 76
+text = "Ghost peppers from someplace"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -188.0
+offset_top = -228.0
+offset_right = 190.0
+offset_bottom = -134.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 51
+text = "Start"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(150, 220)
+rotation = 0.068772
+scale = Vector2(2.26563, 2.10938)
+texture = ExtResource("1_nf0ib")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(875, 257)
+rotation = -0.238311
+scale = Vector2(2.26563, 2.10938)
+texture = ExtResource("2_vuv86")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(1037, 258)
+rotation = -0.159596
+scale = Vector2(2.26563, 2.10938)
+texture = ExtResource("3_aoh5o")
+
+[connection signal="pressed" from="Control/Button" to="Node2D" method="_on_button_pressed"]

@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://bcmejmhblqi2t"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_wftyi"]
+[ext_resource type="Texture2D" uid="uid://crajxv0663pv0" path="res://Assets/grass.png" id="2_o70hn"]
+[ext_resource type="Script" path="res://Player/Gun.gd" id="3_jpu70"]
+[ext_resource type="Script" path="res://Player/Coli.gd" id="4_bosn4"]
+[ext_resource type="Texture2D" uid="uid://jwai46n1roou" path="res://Assets/fire.png" id="4_hqyoh"]
+[ext_resource type="AudioStream" uid="uid://dwov6pj8rptva" path="res://Assets/hitHurt.wav" id="5_ds8ih"]
+[ext_resource type="AudioStream" uid="uid://jhldjgosc4l5" path="res://Assets/explosion.wav" id="6_56aca"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfgur"]
+size = Vector2(70.5872, 73.098)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eq8a3"]
+radius = 16.2399
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(640, 360)
+scale = Vector2(1.67692, 1.61734)
+script = ExtResource("1_wftyi")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.35321, -0.27449)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_xfgur")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.135, 1.135)
+texture = ExtResource("2_o70hn")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(50, 0)
+script = ExtResource("3_jpu70")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+z_index = 10
+scale = Vector2(0.585, 0.585)
+texture = ExtResource("4_hqyoh")
+
+[node name="Gun" type="Area2D" parent="Node2D" node_paths=PackedStringArray("Hit", "Explosion")]
+script = ExtResource("4_bosn4")
+Hit = NodePath("Hit")
+Explosion = NodePath("Explosion")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Gun"]
+shape = SubResource("CircleShape2D_eq8a3")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="Node2D/Gun"]
+stream = ExtResource("5_ds8ih")
+volume_db = -30.0
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="Node2D/Gun"]
+stream = ExtResource("6_56aca")
+volume_db = -30.0
+
+[connection signal="area_entered" from="Node2D/Gun" to="Node2D/Gun" method="_on_area_entered"]

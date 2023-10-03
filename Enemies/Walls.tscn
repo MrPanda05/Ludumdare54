@@ -1,0 +1,128 @@
+[gd_scene load_steps=13 format=3 uid="uid://bvgfxpgo0hce5"]
+
+[ext_resource type="Script" path="res://Enemies/Walls.gd" id="1_am0wl"]
+[ext_resource type="Texture2D" uid="uid://bbgndrthvaitd" path="res://Assets/walls.png" id="2_su3cb"]
+[ext_resource type="Script" path="res://Enemies/ColiWall.gd" id="3_lfajp"]
+[ext_resource type="AudioStream" uid="uid://ctiw8v0c838vc" path="res://Assets/explosionPLAYER.wav" id="4_7qinv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jikd4"]
+size = Vector2(1345, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxles"]
+size = Vector2(1436, 153)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aokpi"]
+size = Vector2(720, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6nta"]
+size = Vector2(973, 68)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1h60a"]
+size = Vector2(690, 31.0013)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5rkyf"]
+size = Vector2(748, 117)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_micf4"]
+size = Vector2(1350, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ub7ok"]
+size = Vector2(1409, 101)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("top", "down", "left", "right")]
+position = Vector2(0, 6)
+script = ExtResource("1_am0wl")
+top = NodePath("Top")
+down = NodePath("Down")
+left = NodePath("Left")
+right = NodePath("Right")
+
+[node name="Down" type="CharacterBody2D" parent="."]
+position = Vector2(23, 733)
+
+[node name="Sprite2D" type="Sprite2D" parent="Down"]
+position = Vector2(626.5, 670)
+scale = Vector2(1.944, 2.28)
+texture = ExtResource("2_su3cb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Down"]
+position = Vector2(654.5, -2.5)
+shape = SubResource("RectangleShape2D_jikd4")
+
+[node name="Area2D" type="Area2D" parent="Down" node_paths=PackedStringArray("Explosion")]
+script = ExtResource("3_lfajp")
+Explosion = NodePath("../../AudioStreamPlayer2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Down/Area2D"]
+position = Vector2(683, 52.5)
+shape = SubResource("RectangleShape2D_lxles")
+
+[node name="Left" type="CharacterBody2D" parent="."]
+position = Vector2(-13, -206)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="Left"]
+position = Vector2(518.386, 884.773)
+scale = Vector2(1.08816, 2.98773)
+texture = ExtResource("2_su3cb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2(560, -1)
+shape = SubResource("RectangleShape2D_aokpi")
+
+[node name="Area2D" type="Area2D" parent="Left" node_paths=PackedStringArray("Explosion")]
+script = ExtResource("3_lfajp")
+Explosion = NodePath("../../AudioStreamPlayer2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left/Area2D"]
+position = Vector2(476.5, 14.9983)
+shape = SubResource("RectangleShape2D_h6nta")
+
+[node name="Right" type="CharacterBody2D" parent="."]
+position = Vector2(1390, -210)
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="Right"]
+position = Vector2(570.888, -670.944)
+scale = Vector2(0.927098, 2.2929)
+texture = ExtResource("2_su3cb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2(564, -0.501343)
+shape = SubResource("RectangleShape2D_1h60a")
+
+[node name="Area2D" type="Area2D" parent="Right" node_paths=PackedStringArray("Explosion")]
+script = ExtResource("3_lfajp")
+Explosion = NodePath("../../AudioStreamPlayer2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right/Area2D"]
+position = Vector2(582, -37.5017)
+shape = SubResource("RectangleShape2D_5rkyf")
+
+[node name="Top" type="CharacterBody2D" parent="."]
+position = Vector2(2, -13)
+
+[node name="Sprite2D" type="Sprite2D" parent="Top"]
+position = Vector2(636.5, -645)
+scale = Vector2(2.071, 2.177)
+texture = ExtResource("2_su3cb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+position = Vector2(673, -2.5)
+shape = SubResource("RectangleShape2D_micf4")
+
+[node name="Area2D" type="Area2D" parent="Top" node_paths=PackedStringArray("Explosion")]
+script = ExtResource("3_lfajp")
+Explosion = NodePath("../../AudioStreamPlayer2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top/Area2D"]
+position = Vector2(694.5, -39.5)
+shape = SubResource("RectangleShape2D_ub7ok")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_7qinv")
+
+[connection signal="body_entered" from="Down/Area2D" to="Down/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Left/Area2D" to="Left/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Right/Area2D" to="Right/Area2D" method="_on_body_entered"]
+[connection signal="body_entered" from="Top/Area2D" to="Top/Area2D" method="_on_body_entered"]

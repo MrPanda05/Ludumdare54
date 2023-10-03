@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://ba7t4avxu6o7u"]
+
+[ext_resource type="PackedScene" uid="uid://bcmejmhblqi2t" path="res://Player/player.tscn" id="1_1ahpr"]
+[ext_resource type="PackedScene" uid="uid://bvgfxpgo0hce5" path="res://Enemies/Walls.tscn" id="3_usdr4"]
+[ext_resource type="AudioStream" uid="uid://bpkg4wm17dmue" path="res://Assets/JogoDogadu.wav" id="4_ahedt"]
+[ext_resource type="PackedScene" uid="uid://dglup85nf34wx" path="res://Enemies/Spawner.tscn" id="4_r7fhl"]
+
+[sub_resource type="Theme" id="Theme_etiqk"]
+
+[node name="First Level" type="Node"]
+
+[node name="Ui" type="Control" parent="."]
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Ui"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.215686, 0.619608, 0.94902, 1)
+
+[node name="Label" type="Label" parent="Ui"]
+z_index = 9
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -356.0
+offset_right = 253.0
+offset_bottom = -119.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_etiqk")
+theme_override_font_sizes/font_size = 171
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spawner" parent="." instance=ExtResource("4_r7fhl")]
+position = Vector2(1520, -56)
+
+[node name="Player" parent="." instance=ExtResource("1_1ahpr")]
+
+[node name="Walls" parent="." instance=ExtResource("3_usdr4")]
+
+[node name="timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="EnemyTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ahedt")
+volume_db = -30.0
+autoplay = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(663, 718)
+
+[connection signal="timeout" from="timer" to="Walls" method="_on_timer_timeout"]
+[connection signal="timeout" from="EnemyTimer" to="Spawner" method="_on_enemy_timer_timeout"]

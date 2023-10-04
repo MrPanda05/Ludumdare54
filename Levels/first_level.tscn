@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ba7t4avxu6o7u"]
+[gd_scene load_steps=7 format=3 uid="uid://ba7t4avxu6o7u"]
 
 [ext_resource type="PackedScene" uid="uid://bcmejmhblqi2t" path="res://Player/player.tscn" id="1_1ahpr"]
+[ext_resource type="Script" path="res://Levels/Restart.gd" id="1_kohu4"]
 [ext_resource type="PackedScene" uid="uid://bvgfxpgo0hce5" path="res://Enemies/Walls.tscn" id="3_usdr4"]
 [ext_resource type="AudioStream" uid="uid://bpkg4wm17dmue" path="res://Assets/JogoDogadu.wav" id="4_ahedt"]
 [ext_resource type="PackedScene" uid="uid://dglup85nf34wx" path="res://Enemies/Spawner.tscn" id="4_r7fhl"]
@@ -8,6 +9,7 @@
 [sub_resource type="Theme" id="Theme_etiqk"]
 
 [node name="First Level" type="Node"]
+script = ExtResource("1_kohu4")
 
 [node name="Ui" type="Control" parent="."]
 top_level = true
